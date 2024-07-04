@@ -18,6 +18,7 @@ static int		get_single_arg(int *taget, char *arg);
 // Check argc
 // Try and check malloc
 // Get the values from argv
+// Assign NULL to first_philo pointer to avoid future conditional jump
 t_data	*parse_arguments(int argc, char *argv[])
 {
 	t_data	*data;
@@ -25,6 +26,7 @@ t_data	*parse_arguments(int argc, char *argv[])
 	data = malloc(sizeof(t_data));
 	if (!data)
 		free_and_exit(data, "Error\n allocation failed\n");
+	data->first_philo = NULL;
 	if (argc != 5 && argc != 6)
 		free_and_exit(data, "Error\n wrong number of arguments\n");
 	data = load_arguments(data, argv, argc);
