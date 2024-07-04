@@ -17,7 +17,7 @@
 // error is used to print an OPTIONAL message error
 //	for example during parsing
 
-void		free_and_exit(t_data *data, char *error)
+void	free_and_exit(t_data *data, char *error)
 {
 	if (error)
 		printf("%s\n", error);

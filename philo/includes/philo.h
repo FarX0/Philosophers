@@ -28,7 +28,6 @@ typedef struct s_philo
 	int	id;
 }	t_philo;
 
-
 // All usigned because they can't be negative
 typedef struct s_data
 {
@@ -57,7 +56,5 @@ typedef struct s_data
 t_data	*parse_arguments(int argc, char *argv[]);
 
 void	free_and_exit(t_data *data, char *error);
-
-int	ft_isdigit(int c);
 
 #endif

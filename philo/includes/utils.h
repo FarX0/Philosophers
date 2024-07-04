@@ -13,7 +13,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "philo.h"
+# include "philo.h"
 
 typedef enum e_bool
 {
