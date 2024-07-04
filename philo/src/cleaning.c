@@ -32,22 +32,24 @@ void	free_and_exit(t_data *data, char *error)
 // Pass throw the list of philosophers and free each one
 static void	free_philos(t_data *data)
 {
-	// t_philo	*philo_tmp;
-	// int		i;
+	t_philo	*philo_tmp;
+	int		i;
 
 	if (!data->first_philo)
 		return ;
-	// i = 1;
+	i = 1;
 	if (data->number_of_philosophers == 1)
 	{
 		free(data->first_philo);
 		return ;
 	}
-	// philo_tmp = data->first_philo;
-	// while (i <= data->number_of_philosophers)
-	// {
-	// 	philo_tmp = philo_tmp->rigth_philo;
-	// 	free(philo_tmp->left_philo);
-	// 	i++;
-	// }
+	philo_tmp = data->first_philo;
+	while (i < data->number_of_philosophers)
+	{
+		 t_philo *next_philo = philo_tmp->right_philo; // Save the next philo before freeing
+        free(philo_tmp->left_philo);
+        philo_tmp = next_philo; // Move to the next philo
+		i++;
+	}
+	free(data->first_philo);
 }

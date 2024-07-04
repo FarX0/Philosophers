@@ -16,12 +16,12 @@ t_data	*Initialize_table(t_data *data)
 	data->first_philo = philo_tmp;
 	while (i <= data->number_of_philosophers)
 	{
-		philo_tmp->rigth_philo = new_philo(data, i, philo_tmp);
-		philo_tmp->rigth_philo->left_philo = philo_tmp;
-		philo_tmp = philo_tmp->rigth_philo;
+		philo_tmp->right_philo = new_philo(data, i, philo_tmp);
+		philo_tmp->right_philo->left_philo = philo_tmp;
+		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
-	philo_tmp->rigth_philo = data->first_philo;
+	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
 	return (data);
 }

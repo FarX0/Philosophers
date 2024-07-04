@@ -97,7 +97,7 @@ void	display_table(t_data *data)
 		printf("Current id:%i, ", philo_tmp->id);
 		printf("on his left id: %i, ", philo_tmp->left_philo->id);
 		printf("on his rigth id: %i\n", philo_tmp->left_philo->id);
-		philo_tmp = philo_tmp->rigth_philo;
+		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
 }

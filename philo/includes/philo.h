@@ -27,7 +27,7 @@ typedef struct s_philo
 	//From 1 to number_of_philosophers
 	int	id;
 
-	struct s_philo	*rigth_philo;
+	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
 
 }	t_philo;
