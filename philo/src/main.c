@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/04 17:45:02 by maceccar          #+#    #+#             */
+/*   Updated: 2024/07/04 17:45:02 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philo.h"
 
@@ -11,7 +22,7 @@ int main(int argc, char *argv[])
 	printf("ttdie: %i\n", data->time_to_die);
 	printf("tteat: %i\n", data->time_to_eat);
 	printf("ttsleep: %i\n", data->time_to_sleep);
-	printf("num_eating_time (optional): %i\n", data->number_of_times_each_philosopher_must_eat);
+	printf("meals count (optional): %i\n", data->meals_count);
 
 	free_and_exit(data, NULL);
 }
