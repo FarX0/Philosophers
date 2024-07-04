@@ -2,12 +2,13 @@ NAME		= philo
 
 SRC = src/main.c \
 	src/parsing.c \
-	src/utils/utils.c \
 	src/cleaning.c \
+	src/initailize.c \
+	src/utils/utils.c \
 
 INCLUDES = ./includes
 
-ARG = 1 2 3 4 5
+ARG = 2 2 3 4 5
 
 FLAGS		= -Wall -Werror -Wextra -g
 # FLAGS		= -g

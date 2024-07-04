@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-// static void	free_philos(t_philo *philo);
+static void	free_philos(t_data *data);
 
 // error is used to print an OPTIONAL message error
 //	for example during parsing
@@ -22,7 +22,7 @@ void	free_and_exit(t_data *data, char *error)
 	if (error)
 		printf("%s\n", error);
 
-	// free_philos(data->philo);
+	free_philos(data);
 
 	if (data)
 		free(data);
@@ -30,10 +30,24 @@ void	free_and_exit(t_data *data, char *error)
 }
 
 // Pass throw the list of philosophers and free each one
-// static void	free_philos(t_philo *philo)
-// {
-// 	//TO DO da finire, ora è stata fatta just for fan
-// 	// per eviare gli errori di compilazione con le flag
-// 	if (philo)
-// 		free(philo);
-// }
+static void	free_philos(t_data *data)
+{
+	// t_philo	*philo_tmp;
+	// int		i;
+
+	if (!data->first_philo)
+		return ;
+	// i = 1;
+	if (data->number_of_philosophers == 1)
+	{
+		free(data->first_philo);
+		return ;
+	}
+	// philo_tmp = data->first_philo;
+	// while (i <= data->number_of_philosophers)
+	// {
+	// 	philo_tmp = philo_tmp->rigth_philo;
+	// 	free(philo_tmp->left_philo);
+	// 	i++;
+	// }
+}

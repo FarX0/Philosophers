@@ -17,12 +17,10 @@ int main(int argc, char *argv[])
 	t_data *data;
 
 	data = parse_arguments(argc, argv);
+	data = Initialize_table(data);
 
-	printf("num: %i\n", data->number_of_philosophers);
-	printf("ttdie: %i\n", data->time_to_die);
-	printf("tteat: %i\n", data->time_to_eat);
-	printf("ttsleep: %i\n", data->time_to_sleep);
-	printf("meals count (optional): %i\n", data->meals_count);
+	display_table(data);
+	
 
 	free_and_exit(data, NULL);
 }

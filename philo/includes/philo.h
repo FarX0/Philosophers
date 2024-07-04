@@ -26,6 +26,10 @@ typedef struct s_philo
 {
 	//From 1 to number_of_philosophers
 	int	id;
+
+	struct s_philo	*rigth_philo;
+	struct s_philo	*left_philo;
+
 }	t_philo;
 
 // All usigned because they can't be negative
@@ -49,11 +53,16 @@ typedef struct s_data
 	// if not defined: -1
 	int		meals_count;
 
-	t_philo	*philo;
+	// Thi philo is that one with id=1
+	t_philo	*first_philo;
 
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
+
+t_data	*Initialize_table(t_data *data);
+
+void	display_table(t_data *data);
 
 void	free_and_exit(t_data *data, char *error);
 

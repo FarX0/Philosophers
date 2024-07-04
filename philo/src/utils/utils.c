@@ -79,3 +79,25 @@ t_bool	ft_is_string_numeric(const char *str)
 	}
 	return (true);
 }
+
+void	display_table(t_data *data)
+{
+	t_philo	*philo_tmp;
+	int		i;
+
+	i = 1;
+	if (data->number_of_philosophers == 1)
+	{
+		printf("Current id:%i\n", data->first_philo->id);
+		return ;
+	}
+	philo_tmp = data->first_philo;
+	while (i <= data->number_of_philosophers)
+	{
+		printf("Current id:%i, ", philo_tmp->id);
+		printf("on his left id: %i, ", philo_tmp->left_philo->id);
+		printf("on his rigth id: %i\n", philo_tmp->left_philo->id);
+		philo_tmp = philo_tmp->rigth_philo;
+		i++;
+	}
+}
