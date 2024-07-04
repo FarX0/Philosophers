@@ -8,7 +8,7 @@ SRC = src/main.c \
 
 INCLUDES = ./includes
 
-ARG = 2a 2 3 4 5
+ARG = 1 2 3 4 5
 
 FLAGS		= -Wall -Werror -Wextra -g
 # FLAGS		= -g
