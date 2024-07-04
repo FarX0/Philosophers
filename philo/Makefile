@@ -1,12 +1,16 @@
 NAME		= philo
 
 SRC = src/main.c \
+	src/parsing.c \
+	src/utils/utils.c \
+	src/cleaning.c \
 
 INCLUDES = ./includes
 
-ARG = 1 3 2
+ARG = 1 2 3 4 5
 
 FLAGS		= -Wall -Werror -Wextra -g
+# FLAGS		= -g
 
 OBJS		= $(SRC:%.c=%.o)
 
