@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initailize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/05 12:53:56 by maceccar          #+#    #+#             */
+/*   Updated: 2024/07/05 12:53:56 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philo.h"
 
@@ -6,10 +17,17 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
 // Used to allocate philosophers and forks
 // i starts from 1 beacause philos id must start from 1
 // Crete 1° philo with NULL as left_philosopher beacause is the first
-t_data	*Initialize_table(t_data *data)
+//	=> his left philo will be assigned at the end
+// It's used the RIGHT CREATION
+//	=> First of all is created first node and assigned to first_philo in data
+//		Each time is creted the next one (on his right) and connected
+//		with the current one
+// In the end, to close the "chain" is conneceted the current node
+//	with the first one
+t_data	*initialize_table(t_data *data)
 {
 	t_philo	*philo_tmp;
-	int	i;
+	int		i;
 
 	i = 1;
 	philo_tmp = new_philo(data, i++, NULL);
@@ -26,11 +44,12 @@ t_data	*Initialize_table(t_data *data)
 	return (data);
 }
 
-// Just left becuase i use rigth creation
+// Just left node in parameters becuase rigth creation is used
+//	=> assign just the left one because you don't know what will be later
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 {
 	t_philo	*philo;
-	
+
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		free_and_exit(data, "Error\n allocation failed");

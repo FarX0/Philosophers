@@ -6,7 +6,7 @@
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:01:24 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/04 18:01:24 by maceccar         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:22:30 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_data
 
 t_data	*parse_arguments(int argc, char *argv[]);
 
-t_data	*Initialize_table(t_data *data);
+t_data	*initialize_table(t_data *data);
 
 void	display_table(t_data *data);
 

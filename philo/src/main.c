@@ -6,7 +6,7 @@
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:02 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/04 17:45:02 by maceccar         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:43:13 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	t_data *data;
 
 	data = parse_arguments(argc, argv);
-	data = Initialize_table(data);
+	data = initialize_table(data);
 
 	display_table(data);
 	
