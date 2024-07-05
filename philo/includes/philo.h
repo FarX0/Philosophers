@@ -20,12 +20,11 @@
 # include <limits.h>
 # include "utils.h"
 
-//Visto che deve essere una "catena" io aggiungerei il prev e il next
-//	unendo gli estremi
+// Is managed as a "chain" connecting first and last "nodes"
 typedef struct s_philo
 {
 	//From 1 to number_of_philosophers
-	int	id;
+	int				id;
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
