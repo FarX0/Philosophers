@@ -3,14 +3,12 @@ NAME		= philo
 SRC = src/main.c \
 	src/parsing.c \
 	src/cleaning.c \
-	src/initailize.c \
+	src/initialize.c \
 	src/utils/utils.c \
 
 INCLUDES = ./includes
 
-ARG = 1 2 3 4 5
-
-FLAGS		= -Wall -Werror -Wextra -g
+FLAGS		= -Wall -Werror -Wextra -I includes -pthread
 # FLAGS		= -g
 
 OBJS		= $(SRC:%.c=%.o)
@@ -39,7 +37,16 @@ fclean: clean
 re: fclean all
 
 test: all
-	 ./$(NAME) $(ARG)
+	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
+	 ./$(NAME) 1 800 200 200
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	 ./$(NAME) 5 800 200 200
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die and the simulation should stop when every philosopher has eaten at least 7 times.$(RESET)"
+	 ./$(NAME) 5 800 200 200 7
+	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
+	 ./$(NAME) 4 410 200 200
+	@echo "$(GREEN)[PHILO]:\t One philosopher should die.$(RESET)"
+	 ./$(NAME) 4 310 200 100
 
 val: all
 	 valgrind --leak-check=full --track-origins=yes -s --show-leak-kinds=all ./$(NAME) $(ARG)

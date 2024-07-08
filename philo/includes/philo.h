@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 18:01:24 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/04 20:22:30 by maceccar         ###   ########.fr       */
+/*   Created: 2024/07/04 18:01:24 by lebartol          #+#    #+#             */
+/*   Updated: 2024/07/08 15:41:17 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <pthread.h>
+# include <sys/time.h>
 # include "utils.h"
 
 // Is managed as a "chain" connecting first and last "nodes"
@@ -25,10 +27,14 @@ typedef struct s_philo
 {
 	//From 1 to number_of_philosophers
 	int				id;
+	int				meals_eaten;
+	int				last_meal;
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
-
+	pthread_mutex_t	is_dead;
+	pthread_mutex_t	r_fork;
+	pthread_mutex_t	l_fork;
 }	t_philo;
 
 // All usigned because they can't be negative
@@ -46,7 +52,7 @@ typedef struct s_data
 	//Time phoilo will spend sleeping
 	int		time_to_sleep;
 
-	//(OPTIONAL) 
+	//(OPTIONAL)
 	// simulation stops whene all philos have eaten at least
 	// n time
 	// if not defined: -1
@@ -54,6 +60,8 @@ typedef struct s_data
 
 	// Thi philo is that one with id=1
 	t_philo	*first_philo;
+
+	pthread_t *thread_id;
 
 }	t_data;
 

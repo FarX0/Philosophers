@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initailize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 12:53:56 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/05 12:53:56 by maceccar         ###   ########.fr       */
+/*   Created: 2024/07/05 12:53:56 by lebartol          #+#    #+#             */
+/*   Updated: 2024/07/08 12:57:22 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
 	philo->left_philo = left_philo;
+	philo->last_meal = 0;
+	philo->meals_eaten = 0;
 	return (philo);
 }

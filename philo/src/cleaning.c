@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 18:05:37 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/05 12:38:01 by maceccar         ###   ########.fr       */
+/*   Created: 2024/07/04 18:05:37 by lebartol          #+#    #+#             */
+/*   Updated: 2024/07/08 12:57:22 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

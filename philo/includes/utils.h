@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 17:55:57 by maceccar          #+#    #+#             */
-/*   Updated: 2024/07/04 18:11:05 by maceccar         ###   ########.fr       */
+/*   Created: 2024/07/04 17:55:57 by lebartol          #+#    #+#             */
+/*   Updated: 2024/07/08 14:24:02 by lebartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ long	ft_atol(const char *s);
 t_bool	ft_is_string_numeric(const char *str);
 
 int		ft_isdigit(int c);
+
+int	ft_usleep(size_t milliseconds);
 
 #endif
