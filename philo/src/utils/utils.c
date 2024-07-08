@@ -12,6 +12,14 @@
 
 #include "philo.h"
 
+void ft_mutex_write(t_data *data, int x, char *str)
+{
+	while (pthread_mutex_trylock(data->write_lock))
+		ft_usleep(1);
+	printf("%d %s\n", x, str);
+	pthread_mutex_unlock(data->write_lock);
+}
+
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -115,7 +123,7 @@ void	display_table(t_data *data)
 	{
 		printf("Current id:%i, ", philo_tmp->id);
 		printf("on his left id: %i, ", philo_tmp->left_philo->id);
-		printf("on his rigth id: %i\n", philo_tmp->left_philo->id);
+		printf("on his rigth id: %i\n", philo_tmp->right_philo->id);
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}

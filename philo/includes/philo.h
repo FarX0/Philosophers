@@ -25,22 +25,27 @@
 // Is managed as a "chain" connecting first and last "nodes"
 typedef struct s_philo
 {
-	//From 1 to number_of_philosophers
+	int				number_of_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_count;
 	int				id;
 	int				meals_eaten;
-	int				last_meal;
+	size_t			last_meal;
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
-	pthread_mutex_t	is_dead;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	l_fork;
+	pthread_t		*thread_id;
+	pthread_mutex_t *write_lock;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 }	t_philo;
 
 // All usigned because they can't be negative
 typedef struct s_data
 {
-	//Also the number of forks (forchette)
+		//Also the number of forks (forchette)
 	int		number_of_philosophers;
 
 	//Milisecond
@@ -57,10 +62,12 @@ typedef struct s_data
 	// n time
 	// if not defined: -1
 	int		meals_count;
-
+	//From 1 to number_of_philosophers
 	// Thi philo is that one with id=1
 	t_philo	*first_philo;
 
+
+	pthread_mutex_t *write_lock;
 	pthread_t *thread_id;
 
 }	t_data;
@@ -72,5 +79,13 @@ t_data	*initialize_table(t_data *data);
 void	display_table(t_data *data);
 
 void	free_and_exit(t_data *data, char *error);
+
+int		create_philo_routine(t_philo *p);
+
+void	ft_mutex_write(t_data *data, int x, char *str);
+
+void	philo_sleep(t_philo *p);
+
+int		get_single_arg(int *taget, char *arg);
 
 #endif

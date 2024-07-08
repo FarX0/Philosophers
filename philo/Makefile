@@ -5,13 +5,16 @@ SRC = src/main.c \
 	src/cleaning.c \
 	src/initialize.c \
 	src/utils/utils.c \
+	src/philosopher.c \
 
 INCLUDES = ./includes
 
-FLAGS		= -Wall -Werror -Wextra -I includes -pthread
+FLAGS		= -Wall -Werror -Wextra -I includes -pthread -g
 # FLAGS		= -g
 
 OBJS		= $(SRC:%.c=%.o)
+
+ARG = 1 800 200 200
 
 # -s : for valgrind
 $(NAME): $(OBJS)

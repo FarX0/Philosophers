@@ -32,7 +32,7 @@ void	free_and_exit(t_data *data, char *error)
 // Pass throw the list of philosophers and free each one
 // Check if first_philo is null, in this case there would have been
 //	an error during parsing
-// Loop until i hasn't reach the number of philos beacause 
+// Loop until i hasn't reach the number of philos beacause
 //	doing while(philo_tmp) would result in a conditianl jump and infinite loop
 // As in the allocation, is always freed the left side node of the current one
 //	=> you step on and free the previous one
@@ -47,7 +47,7 @@ static void	free_philos(t_data *data)
 	if (!data->first_philo)
 		return ;
 	philo_tmp = data->first_philo;
-	while (i < data->number_of_philosophers)
+	while (i < philo_tmp->number_of_philosophers)
 	{
 		data->first_philo = philo_tmp->right_philo;
 		free(philo_tmp);
@@ -55,4 +55,6 @@ static void	free_philos(t_data *data)
 		i++;
 	}
 	data->first_philo = NULL;
+	// i mutex lock vanno distrutti
+	pthread_mutex_destroy(data->write_lock);
 }
