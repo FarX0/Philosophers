@@ -76,5 +76,6 @@ static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 	}
 	else
 		data->meals_count = -1;
+	data->timestamp = get_current_time();
 	return (data);
 }
