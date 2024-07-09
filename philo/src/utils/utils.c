@@ -88,6 +88,8 @@ t_bool	ft_is_string_numeric(const char *str)
 	return (true);
 }
 
+// TO DO in caso di errore nel gettimeofday non sarebbe meglio uscire direttamente con la funzione
+// free_adn_exit()? so che non succede mai ma se dovesse succedere si sfanculerebbe tutto??
 size_t	get_current_time(void)
 {
 	struct timeval	time;

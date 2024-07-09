@@ -36,6 +36,7 @@ typedef struct s_philo
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
+
 	pthread_t		*thread_id;
 	pthread_mutex_t *write_lock;
 	pthread_mutex_t	*r_fork;
@@ -68,7 +69,5 @@ int		create_philo_routine(t_philo *p);
 void	ft_mutex_write(t_philo *p, char *str);
 
 void	philo_sleep(t_philo *p);
-
-int		get_single_arg(int *taget, char *arg);
 
 #endif

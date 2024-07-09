@@ -45,7 +45,7 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 //	with the first one
 t_data	*initialize_table(t_data *data)
 {
-	t_philo	*philo_tmp;
+	t_philo *philo_tmp;
 	int		i;
 
 	i = 1;
