@@ -19,8 +19,13 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
-	pthread_exit(NULL);
+	// while (1)
+	// {
+	// 	ft_usleep(100);
+	// }
+	//pthread_exit(NULL);
 	//attivita da filosofo ordinate per meno letali
+	return (NULL);
 }
 
 //TO DO spostare questa cosa direttamente in initialize_table()
@@ -46,6 +51,7 @@ int create_philo_routine(t_philo *p)
 
 	if (pthread_create(p->thread_id, NULL, philo_routine, p))
 		return (1);
+	pthread_join(*p->thread_id, NULL);
 	return (0);
 }
 
@@ -73,7 +79,7 @@ void Monitor(t_data *data)
 	// t_data *data = (t_data *)vargp;
 
 	if (create_threads(data))
-		return (NULL);
+		return;
 	while (!check_philo(data))
 	{
 		usleep(100);
@@ -85,7 +91,6 @@ void Monitor(t_data *data)
 int main(int argc, char *argv[])
 {
 	t_data		*data;
-	pthread_t	thread_id;
 	pthread_mutex_t printing;
 
 
@@ -94,16 +99,9 @@ int main(int argc, char *argv[])
 	data = parse_arguments(argc, argv);
 	data->write_lock = &printing;
 	data = initialize_table(data);
-	data->thread_id = &thread_id;
 
-	if (!create_threads(data))
-	{
-		display_table(data);
-		Monitor(data);
-	}
+	Monitor(data);
 
 	//display_table(data);
-	pthread_create(data->thread_id, NULL, Monitor, data);
-	pthread_join(*data->thread_id, NULL);
 	free_and_exit(data, NULL);
 }

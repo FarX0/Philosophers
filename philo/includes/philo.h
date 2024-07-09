@@ -53,7 +53,6 @@ typedef struct s_data
 	size_t	timestamp;
 	t_philo	*first_philo;
 	pthread_mutex_t *write_lock;
-	pthread_t *thread_id;
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
