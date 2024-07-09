@@ -26,7 +26,6 @@ void	free_and_exit(t_data *data, char *error)
 	free_philos(data);
 	if (data)
 		free(data);
-	exit(0);
 }
 
 // Pass throw the list of philosophers and free each one
@@ -38,6 +37,7 @@ void	free_and_exit(t_data *data, char *error)
 //	=> you step on and free the previous one
 // Assing NULL to only one reference to philos in data just
 //	to avoid conditional jump (is optional)
+// l'ultimo filosofo quando lo liberi
 static void	free_philos(t_data *data)
 {
 	t_philo	*philo_tmp;
@@ -47,9 +47,10 @@ static void	free_philos(t_data *data)
 	if (!data->first_philo)
 		return ;
 	philo_tmp = data->first_philo;
-	while (i < philo_tmp->number_of_philosophers)
+	while (i < data->number_of_philosophers)
 	{
 		data->first_philo = philo_tmp->right_philo;
+		pthread_join(*philo_tmp->thread_id, NULL);
 		free(philo_tmp);
 		philo_tmp = data->first_philo;
 		i++;

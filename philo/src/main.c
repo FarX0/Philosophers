@@ -19,8 +19,11 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
+	while (1)
+	{
+		usleep(100);
+	}
 	//attivita da filosofo ordinate per meno letali
-	return (NULL);
 }
 
 int create_threads(t_data *data)
@@ -45,27 +48,26 @@ int create_philo_routine(t_philo *p)
 
 	if (pthread_create(p->thread_id, NULL, philo_routine, p))
 		return (1);
-	pthread_join(*p->thread_id, NULL);
 	return (0);
 }
 
 
 
-int	check_philo(t_data *data)
+t_philo	*check_philo(t_data *data)
 {
 	t_philo *p = data->first_philo;
 	if ((int)(get_current_time() - p->last_meal) > data->time_to_die)
-		return (p->id);
+		return (p);
 	if (p->right_philo)
 		p = p->right_philo;
 	while (p != data->first_philo)
 	{
 		if ((int)(get_current_time() - p->last_meal) > data->time_to_die)
-			return (p->id);
+			return (p);
 		if (p->right_philo)
 			p = p->right_philo;
 	}
-	return (0);
+	return (NULL);
 }
 
 void *Monitor(void *vargp)
@@ -76,11 +78,10 @@ void *Monitor(void *vargp)
 		return (NULL);
 	while (!check_philo(data))
 	{
-		ft_usleep(100);
+		usleep(100);
 	}
-	ft_mutex_write(data, check_philo(data), "has died horribly.\n");
-
-	return (NULL);
+	ft_mutex_write(check_philo(data), "has died of hunger.\n");
+	pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[])
@@ -98,10 +99,8 @@ int main(int argc, char *argv[])
 	data->thread_id = &thread_id;
 
 
-	display_table(data);
+	//display_table(data);
 	pthread_create(data->thread_id, NULL, Monitor, data);
 	pthread_join(*data->thread_id, NULL);
-
-
 	free_and_exit(data, NULL);
 }

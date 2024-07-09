@@ -12,12 +12,12 @@
 
 #include "philo.h"
 
-void ft_mutex_write(t_data *data, int x, char *str)
+void ft_mutex_write(t_philo *p, char *str)
 {
-	while (pthread_mutex_trylock(data->write_lock))
-		ft_usleep(1);
-	printf("%d %s\n", x, str);
-	pthread_mutex_unlock(data->write_lock);
+	while (pthread_mutex_trylock(p->write_lock))
+		usleep(100);
+	printf("[%zu]\t%d %s\n",(get_current_time() - p->birthday), p->id, str);
+	pthread_mutex_unlock(p->write_lock);
 }
 
 int	ft_atoi(const char *str)

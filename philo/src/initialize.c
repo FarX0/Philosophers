@@ -23,6 +23,10 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
 	philo->left_philo = left_philo;
+	philo->time_to_die = data->time_to_die;
+	philo->time_to_eat = data->time_to_eat;
+	philo->time_to_sleep = data->time_to_sleep;
+	philo->birthday = get_current_time();
 	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
 	philo->write_lock = data->write_lock;

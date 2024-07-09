@@ -25,14 +25,14 @@
 // Is managed as a "chain" connecting first and last "nodes"
 typedef struct s_philo
 {
-	int				number_of_philosophers;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				meals_count;
 	int				id;
 	int				meals_eaten;
 	size_t			last_meal;
+	// il timestamp in cui e' nato il filosofo v
+	size_t			birthday;
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
@@ -45,31 +45,14 @@ typedef struct s_philo
 // All usigned because they can't be negative
 typedef struct s_data
 {
-		//Also the number of forks (forchette)
 	int		number_of_philosophers;
-
-	//Milisecond
 	int		time_to_die;
-
-	//Time it takes for a philosopher to eat (needen two forks)
 	int		time_to_eat;
-
-	//Time phoilo will spend sleeping
 	int		time_to_sleep;
-
-	//(OPTIONAL)
-	// simulation stops whene all philos have eaten at least
-	// n time
-	// if not defined: -1
 	int		meals_count;
-	//From 1 to number_of_philosophers
-	// Thi philo is that one with id=1
 	t_philo	*first_philo;
-
-
 	pthread_mutex_t *write_lock;
 	pthread_t *thread_id;
-
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
@@ -82,7 +65,7 @@ void	free_and_exit(t_data *data, char *error);
 
 int		create_philo_routine(t_philo *p);
 
-void	ft_mutex_write(t_data *data, int x, char *str);
+void	ft_mutex_write(t_philo *p, char *str);
 
 void	philo_sleep(t_philo *p);
 

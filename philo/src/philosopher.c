@@ -14,5 +14,6 @@
 
 void philo_sleep(t_philo *p)
 {
+	ft_mutex_write(p, "is sleeping soundly.");
 	ft_usleep(p->time_to_sleep);
 }
