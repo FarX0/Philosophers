@@ -19,10 +19,10 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
-	// while (1)
-	// {
-	// 	ft_usleep(100);
-	// }
+	while (1)
+	{
+		ft_usleep(100);
+	}
 	//pthread_exit(NULL);
 	//attivita da filosofo ordinate per meno letali
 	return (NULL);
@@ -51,7 +51,6 @@ int create_philo_routine(t_philo *p)
 
 	if (pthread_create(p->thread_id, NULL, philo_routine, p))
 		return (1);
-	pthread_join(*p->thread_id, NULL);
 	return (0);
 }
 
