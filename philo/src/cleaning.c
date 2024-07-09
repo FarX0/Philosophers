@@ -47,7 +47,7 @@ static void	free_philos(t_data *data)
 	if (!data->first_philo)
 		return ;
 	philo_tmp = data->first_philo;
-	while (i < philo_tmp->number_of_philosophers)
+	while (i < data->number_of_philosophers)
 	{
 		data->first_philo = philo_tmp->right_philo;
 		free(philo_tmp);
