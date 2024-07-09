@@ -31,7 +31,6 @@ typedef struct s_philo
 	int				id;
 	int				meals_eaten;
 	size_t			last_meal;
-	// il timestamp in cui e' nato il filosofo v
 	size_t			birthday;
 
 	struct s_philo	*right_philo;
@@ -51,6 +50,7 @@ typedef struct s_data
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		meals_count;
+	size_t	timestamp;
 	t_philo	*first_philo;
 	pthread_mutex_t *write_lock;
 	pthread_t *thread_id;

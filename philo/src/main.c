@@ -19,10 +19,7 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
-	while (1)
-	{
-		usleep(100);
-	}
+	pthread_exit(NULL);
 	//attivita da filosofo ordinate per meno letali
 }
 
@@ -73,6 +70,10 @@ t_philo	*check_philo(t_data *data)
 
 void Monitor(t_data *data)
 {
+	// t_data *data = (t_data *)vargp;
+
+	if (create_threads(data))
+		return (NULL);
 	while (!check_philo(data))
 	{
 		usleep(100);
@@ -101,7 +102,8 @@ int main(int argc, char *argv[])
 		Monitor(data);
 	}
 
-	//pthread_create(data->thread_id, NULL, Monitor, data);
-	//pthread_join(*data->thread_id, NULL);
+	//display_table(data);
+	pthread_create(data->thread_id, NULL, Monitor, data);
+	pthread_join(*data->thread_id, NULL);
 	free_and_exit(data, NULL);
 }
