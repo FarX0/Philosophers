@@ -71,18 +71,14 @@ t_philo	*check_philo(t_data *data)
 	return (NULL);
 }
 
-void *Monitor(void *vargp)
+void Monitor(t_data *data)
 {
-	t_data *data = (t_data *)vargp;
-
-	if (create_threads(data))
-		return (NULL);
 	while (!check_philo(data))
 	{
 		usleep(100);
 	}
 	ft_mutex_write(check_philo(data), "has died of hunger.\n");
-	pthread_exit(NULL);
+	//pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[])
@@ -99,9 +95,13 @@ int main(int argc, char *argv[])
 	data = initialize_table(data);
 	data->thread_id = &thread_id;
 
+	if (!create_threads(data))
+	{
+		display_table(data);
+		Monitor(data);
+	}
 
-	//display_table(data);
-	pthread_create(data->thread_id, NULL, Monitor, data);
-	pthread_join(*data->thread_id, NULL);
+	//pthread_create(data->thread_id, NULL, Monitor, data);
+	//pthread_join(*data->thread_id, NULL);
 	free_and_exit(data, NULL);
 }
