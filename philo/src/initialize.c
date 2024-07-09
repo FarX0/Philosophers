@@ -26,7 +26,7 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
 //	with the first one
 t_data	*initialize_table(t_data *data)
 {
-	t_philo	*philo_tmp;
+	t_ph
 	int		i;
 
 	i = 1;
@@ -46,6 +46,8 @@ t_data	*initialize_table(t_data *data)
 
 // Just left node in parameters becuase rigth creation is used
 //	=> assign just the left one because you don't know what will be later
+// TO DO prendere come parametro anche il birth time in modo che abbiano tutti lo stesso
+//	il primo avrà get_current_time
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 {
 	t_philo	*philo;

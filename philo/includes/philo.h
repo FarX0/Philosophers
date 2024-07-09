@@ -36,6 +36,7 @@ typedef struct s_philo
 
 	struct s_philo	*right_philo;
 	struct s_philo	*left_philo;
+
 	pthread_t		*thread_id;
 	pthread_mutex_t *write_lock;
 	pthread_mutex_t	*r_fork;

@@ -23,6 +23,7 @@ void	*philo_routine(void *args)
 	return (NULL);
 }
 
+//TO DO spostare questa cosa direttamente in initialize_table()
 int create_threads(t_data *data)
 {
 	t_philo *p = data->first_philo;
