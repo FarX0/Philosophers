@@ -12,22 +12,7 @@
 
 #include "philo.h"
 
-// Just left node in parameters becuase rigth creation is used
-//	=> assign just the left one because you don't know what will be later
-static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
-{
-	t_philo	*philo;
-
-	philo = malloc(sizeof(t_philo));
-	if (!philo)
-		free_and_exit(data, "Error\n allocation failed");
-	philo->id = id;
-	philo->left_philo = left_philo;
-	philo->last_meal = get_current_time();
-	philo->meals_eaten = 0;
-	philo->write_lock = data->write_lock;
-	return (philo);
-}
+static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo);
 
 // Used to allocate philosophers and forks
 // i starts from 1 beacause philos id must start from 1
@@ -58,3 +43,21 @@ t_data	*initialize_table(t_data *data)
 	data->first_philo->left_philo = philo_tmp;
 	return (data);
 }
+
+// Just left node in parameters becuase rigth creation is used
+//	=> assign just the left one because you don't know what will be later
+static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
+{
+	t_philo	*philo;
+
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
+		free_and_exit(data, "Error\n allocation failed");
+	philo->id = id;
+	philo->left_philo = left_philo;
+	philo->last_meal = get_current_time();
+	philo->meals_eaten = 0;
+	philo->write_lock = data->write_lock;
+	return (philo);
+}
+

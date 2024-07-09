@@ -86,6 +86,4 @@ void	ft_mutex_write(t_data *data, int x, char *str);
 
 void	philo_sleep(t_philo *p);
 
-int		get_single_arg(int *taget, char *arg);
-
 #endif
