@@ -39,13 +39,14 @@ t_data	*initialize_table(t_data *data)
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
+	data->first_philo->l_fork = &philo_tmp->r_fork;
 	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
 	return (data);
 }
 
-// Just left node in parameters becuase rigth creation is used
-//	=> assign just the left one because you don't know what will be later
+// Just left node in parameters because right creation is used
+//	=> assign just the left one because you don't know what it will be later
 static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 {
 	t_philo	*philo;
@@ -54,6 +55,7 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	if (!philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
+	philo->l_fork = &left_philo->r_fork;
 	philo->left_philo = left_philo;
 	philo->time_to_die = data->time_to_die;
 	philo->time_to_eat = data->time_to_eat;

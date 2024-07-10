@@ -12,28 +12,6 @@
 
 #include "philo.h"
 
-static int		get_single_arg(int *taget, char *arg);
-static t_data	*load_arguments(t_data *data, char *argv[], int argc);
-
-// Check argc
-// Try and check malloc
-// Get the values from argv
-// Assign NULL to first_philo pointer to avoid future conditional jump
-t_data	*parse_arguments(int argc, char *argv[])
-{
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	if (!data)
-		free_and_exit(data, "Error\n allocation failed\n");
-	data->first_philo = NULL;
-	if (argc != 5 && argc != 6)
-		free_and_exit(data, "Error\n wrong number of arguments\n");
-	data = load_arguments(data, argv, argc);
-	return (data);
-}
-
-
 // Used to check every single argc because all of them respect the same
 //	rules and are of the same type
 // Assign to target the value get by arg
@@ -77,5 +55,23 @@ static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 	else
 		data->meals_count = -1;
 	data->timestamp = get_current_time();
+	return (data);
+}
+
+// Check argc
+// Try and check malloc
+// Get the values from argv
+// Assign NULL to first_philo pointer to avoid future conditional jump
+t_data	*parse_arguments(int argc, char *argv[])
+{
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
+	if (!data)
+		free_and_exit(data, "Error\n allocation failed\n");
+	data->first_philo = NULL;
+	if (argc != 5 && argc != 6)
+		free_and_exit(data, "Error\n wrong number of arguments\n");
+	data = load_arguments(data, argv, argc);
 	return (data);
 }

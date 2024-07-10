@@ -38,7 +38,7 @@ typedef struct s_philo
 
 	pthread_t		thread_id;
 	pthread_mutex_t *write_lock;
-	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	r_fork;
 	pthread_mutex_t	*l_fork;
 }	t_philo;
 

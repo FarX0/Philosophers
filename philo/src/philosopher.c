@@ -12,11 +12,6 @@
 
 #include "philo.h"
 
-void fetch_forks(t_philo *p)
-{
-	
-}
-
 void philo_sleep(t_philo *p)
 {
 	ft_mutex_write(p, "is sleeping soundly.");
@@ -25,5 +20,14 @@ void philo_sleep(t_philo *p)
 
 void philo_eat(t_philo *p)
 {
-	fetch_forks(p);
+	while (pthread_mutex_trylock(&p->r_fork))
+		usleep(100);
+	while (pthread_mutex_trylock(p->l_fork))
+		usleep(100);
+	ft_mutex_write(p, "is eating");
+	p->last_meal = get_current_time();
+	p->meals_eaten++;
+	ft_usleep(p->time_to_eat);
+	pthread_mutex_unlock(&p->r_fork);
+	pthread_mutex_unlock(p->l_fork);
 }
