@@ -21,10 +21,9 @@ void	*philo_routine(void *args)
 		philo_sleep(philo);
 	while (1)
 	{
-		ft_usleep(100);
+		philo_eat();
+		philo_sleep();
 	}
-	//pthread_exit(NULL);
-	//attivita da filosofo ordinate per meno letali
 	return (NULL);
 }
 
@@ -46,10 +45,7 @@ int create_threads(t_data *data)
 
 int create_philo_routine(t_philo *p)
 {
-	pthread_t	thread_id;
-	p->thread_id = &thread_id;
-
-	if (pthread_create(p->thread_id, NULL, philo_routine, p))
+	if (pthread_create(&p->thread_id, NULL, philo_routine, p))
 		return (1);
 	return (0);
 }
@@ -84,6 +80,7 @@ void Monitor(t_data *data)
 		usleep(100);
 	}
 	ft_mutex_write(check_philo(data), "has died of hunger.\n");
+	free_and_exit(data, NULL);
 	//pthread_exit(NULL);
 }
 
@@ -102,5 +99,5 @@ int main(int argc, char *argv[])
 	Monitor(data);
 
 	//display_table(data);
-	free_and_exit(data, NULL);
+
 }

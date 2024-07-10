@@ -12,8 +12,18 @@
 
 #include "philo.h"
 
+void fetch_forks(t_philo *p)
+{
+	
+}
+
 void philo_sleep(t_philo *p)
 {
 	ft_mutex_write(p, "is sleeping soundly.");
 	ft_usleep(p->time_to_sleep);
+}
+
+void philo_eat(t_philo *p)
+{
+	fetch_forks(p);
 }
