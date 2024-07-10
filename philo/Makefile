@@ -14,7 +14,7 @@ FLAGS		= -Wall -Werror -Wextra -I includes -pthread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 3 800 200 200
+ARG = 1 800 200 200
 
 # -s : for valgrind
 $(NAME): $(OBJS)
