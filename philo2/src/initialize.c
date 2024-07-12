@@ -63,6 +63,8 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 		philo->left_philo = left_philo;
 	}
 	philo->birthday =  data->timestamp;
+	// adesso che abbiamo data birthday non serve ma non ho voglia di riscrivere i metodi del write
+	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
 	philo->data = data;
 	return (philo);

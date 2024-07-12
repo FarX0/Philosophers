@@ -55,9 +55,8 @@ static void	free_philos(t_data *data)
 	while (i < data->number_of_philosophers)
 	{
 		data->first_philo = philo_tmp->right_philo;
-		// pthread_cancel(philo_tmp->thread_id);
-		// pthread_join(philo_tmp->thread_id, NULL);
-		//pthread_mutex_destroy(&philo_tmp->r_fork);
+		pthread_join(philo_tmp->thread_id, NULL);
+		pthread_mutex_destroy(&philo_tmp->r_fork);
 		//pthread_mutex_destroy(philo_tmp->l_fork);
 		free(philo_tmp);
 		philo_tmp = data->first_philo;
