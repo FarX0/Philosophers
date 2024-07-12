@@ -112,6 +112,6 @@ int main(int argc, char *argv[])
 	data = initialize_table(data);
 
 	//Monitor(data);
-	display_table(data);
+	//display_table(data);
 	free_and_exit(data, NULL);
 }
