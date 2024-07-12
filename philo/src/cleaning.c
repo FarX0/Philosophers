@@ -39,23 +39,23 @@ void	free_and_exit(t_data *data, char *error)
 // Assing NULL to only one reference to philos in data just
 //	to avoid conditional jump (is optional)
 // l'ultimo filosofo quando lo liberi
-static void	free_philos(t_data *data)
-{
-	t_philo	*philo_tmp;
-	int		i;
+// static void	free_philos(t_data *data)
+// {
+// 	t_philo	*philo_tmp;
+// 	int		i;
 
-	i = 0;
-	if (!data->first_philo)
-		return ;
-	philo_tmp = data->first_philo;
-	while (i < data->number_of_philosophers)
-	{
-		data->first_philo = philo_tmp->right_philo;
-		pthread_cancel(philo_tmp->thread_id);
-		pthread_join(philo_tmp->thread_id, NULL);
-		pthread_mutex_destroy(philo_tmp->r_fork);
-		free(philo_tmp);
-		philo_tmp = data->first_philo;
-		i++;
-	}
-}
+// 	i = 0;
+// 	if (!data->first_philo)
+// 		return ;
+// 	philo_tmp = data->first_philo;
+// 	while (i < data->number_of_philosophers)
+// 	{
+// 		data->first_philo = philo_tmp->right_philo;
+// 		pthread_cancel(philo_tmp->thread_id);
+// 		pthread_join(philo_tmp->thread_id, NULL);
+// 		pthread_mutex_destroy(philo_tmp->r_fork);
+// 		free(philo_tmp);
+// 		philo_tmp = data->first_philo;
+// 		i++;
+// 	}
+// }

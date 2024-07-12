@@ -10,7 +10,7 @@ SRC = src/main.c \
 INCLUDES = ./includes
 
 # FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
- FLAGS		= -I includes -pthread -fsanitize=thread -g
+ FLAGS		= -I includes -g
 
 OBJS		= $(SRC:%.c=%.o)
 

@@ -35,9 +35,9 @@ typedef struct s_philo
 
 	struct s_data	*data;
 
-	pthread_t		thread_id;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	// pthread_t		thread_id;
+	// pthread_mutex_t	*r_fork;
+	// pthread_mutex_t	*l_fork;
 }	t_philo;
 
 // All usigned because they can't be negative

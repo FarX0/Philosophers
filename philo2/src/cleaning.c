@@ -24,7 +24,8 @@ void	free_and_exit(t_data *data, char *error)
 	if (error)
 		printf("%s\n", error);
 	//free_philos(data);
-	//pthread_mutex_destroy(data->write_lock);
+	pthread_mutex_destroy(data->write_lock);
+	free(data->write_lock);
 	if (data)
 		free(data);
 }
@@ -51,9 +52,9 @@ static void	free_philos(t_data *data)
 	while (i < data->number_of_philosophers)
 	{
 		data->first_philo = philo_tmp->right_philo;
-		pthread_cancel(philo_tmp->thread_id);
-		pthread_join(philo_tmp->thread_id, NULL);
-		pthread_mutex_destroy(philo_tmp->r_fork);
+		// pthread_cancel(philo_tmp->thread_id);
+		// pthread_join(philo_tmp->thread_id, NULL);
+		// pthread_mutex_destroy(philo_tmp->r_fork);
 		free(philo_tmp);
 		philo_tmp = data->first_philo;
 		i++;

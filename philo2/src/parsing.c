@@ -73,6 +73,9 @@ t_data	*parse_arguments(int argc, char *argv[])
 	data = malloc(sizeof(t_data));
 	if (!data)
 		free_and_exit(data, "Error\n allocation failed\n");
+	data->write_lock = malloc(sizeof(pthread_mutex_t));
+	if (!data->write_lock)
+		free_and_exit(data, "Error\n write lock allocation failed\n");
 	if (pthread_mutex_init(data->write_lock, NULL) != 0)
 		free_and_exit(data, "Error\n writing lock allocation failed\n");
 	data->first_philo = NULL;
