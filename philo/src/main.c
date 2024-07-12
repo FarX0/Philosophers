@@ -100,7 +100,7 @@ void Monitor(t_data *data)
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.\n");
-	pthread_mutex_lock(data->write_lock);
+	//pthread_mutex_lock(data->write_lock);
 	free_and_exit(data, NULL);
 }
 

@@ -55,6 +55,8 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	if (!philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
+	if (pthread_mutex_init(&philo->r_fork, NULL))
+		free_and_exit(data, "Error\n allocation failed");
 	philo->l_fork = &left_philo->r_fork;
 	philo->left_philo = left_philo;
 	philo->time_to_die = data->time_to_die;

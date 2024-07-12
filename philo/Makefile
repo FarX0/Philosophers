@@ -51,6 +51,9 @@ test: all
 	@echo "$(GREEN)[PHILO]:\t One philosopher should die.$(RESET)"
 	 ./$(NAME) 4 310 200 100
 
+hel: all
+	valgrind --tool=helgrind ./$(NAME) $(ARG)
+
 val: all
 	 valgrind --leak-check=full --track-origins=yes -s --show-leak-kinds=all ./$(NAME) $(ARG)
 
