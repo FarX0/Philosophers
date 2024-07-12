@@ -57,14 +57,13 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	philo->id = id;
 	if (pthread_mutex_init(philo->r_fork, NULL))
 		free_and_exit(data, "Error\n allocation failed");
-	philo->l_fork = left_philo->r_fork;
-	philo->left_philo = left_philo;
-	philo->time_to_die = data->time_to_die;
-	philo->time_to_eat = data->time_to_eat;
-	philo->time_to_sleep = data->time_to_sleep;
+	if (left_philo)
+	{
+		philo->l_fork = left_philo->r_fork;
+		philo->left_philo = left_philo;
+	}
 	philo->birthday =  data->timestamp;
-	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
-	philo->write_lock = data->write_lock;
+	philo->data = data;
 	return (philo);
 }
