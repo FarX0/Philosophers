@@ -24,8 +24,8 @@ void	free_and_exit(t_data *data, char *error)
 	if (error)
 		printf("%s\n", error);
 	//free_philos(data);
-	pthread_mutex_destroy(data->write_lock);
-	free(data->write_lock);
+	pthread_mutex_destroy(&data->write_lock);
+	// free(data->write_lock);
 	if (data)
 		free(data);
 }
