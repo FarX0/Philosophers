@@ -9,12 +9,13 @@ SRC = src/main.c \
 
 INCLUDES = ./includes
 
+#FLAG fanno incazzare valgring
 # FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
  FLAGS		= -I includes -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 2 800 200 200
+ARG = 1 800 200 200
 
 # -s : for valgrind
 $(NAME): $(OBJS)

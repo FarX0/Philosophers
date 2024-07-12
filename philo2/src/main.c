@@ -101,7 +101,6 @@
 // 	else
 // 		ft_mutex_write(check_philo(data), "has died of hunger.\n");
 // 	//pthread_mutex_lock(data->write_lock);
-// 	free_and_exit(data, NULL);
 // }
 
 int main(int argc, char *argv[])
@@ -112,6 +111,8 @@ int main(int argc, char *argv[])
 	data = initialize_table(data);
 
 	//Monitor(data);
-	//display_table(data);
+
+	//printf("%p\n", &data->write_lock);
+	display_table(data);
 	free_and_exit(data, NULL);
 }
