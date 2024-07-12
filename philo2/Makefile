@@ -15,7 +15,7 @@ INCLUDES = ./includes
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 1 800 200 200
+ARG = 2 800 200 200
 
 # -s : for valgrind
 $(NAME): $(OBJS)

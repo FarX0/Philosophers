@@ -39,7 +39,7 @@ t_data	*initialize_table(t_data *data)
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
-	// data->first_philo->l_fork = philo_tmp->r_fork;
+	data->first_philo->l_fork = &philo_tmp->r_fork;
 	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
 	return (data);
@@ -55,11 +55,11 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	if (!philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
-	// if (pthread_mutex_init(philo->r_fork, NULL))
-	// 	free_and_exit(data, "Error\n fork allocation failed");
+	if (pthread_mutex_init(&philo->r_fork, NULL))
+		free_and_exit(data, "Error\n fork allocation failed");
 	if (left_philo)
 	{
-		// philo->l_fork = left_philo->r_fork;
+		philo->l_fork = &left_philo->r_fork;
 		philo->left_philo = left_philo;
 	}
 	philo->birthday =  data->timestamp;
