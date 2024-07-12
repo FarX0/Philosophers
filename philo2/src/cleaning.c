@@ -23,11 +23,14 @@ void	free_and_exit(t_data *data, char *error)
 {
 	if (error)
 		printf("%s\n", error);
-	//free_philos(data);
+	if (data->first_philo)
+		free_philos(data);
 	pthread_mutex_destroy(&data->write_lock);
 	// free(data->write_lock);
 	if (data)
 		free(data);
+
+	exit(0);
 }
 
 // Pass throw the list of philosophers and free each one
