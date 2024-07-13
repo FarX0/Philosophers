@@ -21,7 +21,7 @@ void ft_mutex_write(t_philo *p, char *str)
 		pthread_mutex_unlock(&p->data->write_lock);
 		return ;
 	}
-	printf("[%zu]\t%d %s\n",(get_current_time() - p->birthday), p->id, str);
+	printf("[%zu]\t%d\t%s\n",(get_current_time() - p->birthday), p->id, str);
 	pthread_mutex_unlock(&p->data->write_lock);
 }
 

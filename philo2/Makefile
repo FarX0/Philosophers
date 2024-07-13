@@ -10,12 +10,12 @@ SRC = src/main.c \
 INCLUDES = ./includes
 
 # sanitize big no no
-#°FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
+#FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
 FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 1 800 200 200
+ARG = 1 800 200 200 10
 
 # -s : for valgrind
 $(NAME): $(OBJS)
@@ -41,6 +41,12 @@ fclean: clean
 re: fclean all
 
 test: all
+	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
+	 ./$(NAME) -1 800 200 200
+	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
+	 ./$(NAME) 1 -800 200 200
+	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
+	 ./$(NAME) 1 800 -200 200
 	@echo "$(GREEN)[PHILO]:\t The philosopher should not eat and should die.$(RESET)"
 	 ./$(NAME) 1 800 200 200
 	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"

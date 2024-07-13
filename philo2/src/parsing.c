@@ -27,7 +27,7 @@ static int	get_single_arg(int *taget, char *arg)
 	if (ft_atol(arg) < INT_MIN || ft_atol(arg) > INT_MAX)
 		return (-1);
 	*taget = ft_atoi(arg);
-	if (*taget == 0)
+	if (*taget <= 0)
 		return (-1);
 	return (*taget);
 }

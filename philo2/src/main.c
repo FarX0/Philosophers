@@ -89,7 +89,7 @@ t_philo	*check_philo(t_data *data)
 void Monitor(t_data *data)
 {
 	if (create_threads(data))
-		return;
+		return ;
 	while (!check_philo(data) && !check_meals(data))
 	{
 		usleep(500);
