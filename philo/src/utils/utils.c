@@ -14,9 +14,15 @@
 
 void ft_mutex_write(t_philo *p, char *str)
 {
-	pthread_mutex_lock(p->write_lock);
-	printf("[%zu]\t%d %s\n",(get_current_time() - p->birthday), p->id, str);
-	pthread_mutex_unlock(p->write_lock);
+	while (pthread_mutex_trylock(&p->data->write_lock))
+		usleep(100);
+	if (p->data->game_over)
+	{
+		pthread_mutex_unlock(&p->data->write_lock);
+		return ;
+	}
+	printf("[%zu]\t%d\t%s\n",(get_current_time() - p->birthday), p->id, str);
+	pthread_mutex_unlock(&p->data->write_lock);
 }
 
 int	ft_atoi(const char *str)
@@ -108,23 +114,25 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
+//start from 1 and and at num of philo just to follow id order
 void	display_table(t_data *data)
 {
 	t_philo	*philo_tmp;
 	int		i;
 
 	i = 1;
-	if (data->number_of_philosophers == 1)
-	{
-		printf("Current id:%i\n", data->first_philo->id);
-		return ;
-	}
+	// if (data->number_of_philosophers == 1)
+	// {
+	// 	printf("Current id:%i\n", data->first_philo->id);
+	// }
+	printf("%p writelock\n", &data->write_lock);
+	printf("%p gameover\n", &data->game_over);
 	philo_tmp = data->first_philo;
 	while (i <= data->number_of_philosophers)
 	{
-		printf("Current id:%i, ", philo_tmp->id);
-		printf("on his left id: %i, ", philo_tmp->left_philo->id);
-		printf("on his rigth id: %i\n", philo_tmp->right_philo->id);
+		printf("%p <- Current id:%i -> %p\n", philo_tmp->l_fork, philo_tmp->id, &philo_tmp->r_fork);
+		printf("on his left id: %p, ", &philo_tmp->left_philo->id);
+		printf("on his rigth id: %p\n", &philo_tmp->right_philo->id);
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}

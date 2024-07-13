@@ -19,7 +19,7 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
-	while (1)
+	while (!philo->data->game_over)
 	{
 		philo_eat(philo);
 		philo_sleep(philo);
@@ -72,13 +72,13 @@ int check_meals(t_data *data)
 t_philo	*check_philo(t_data *data)
 {
 	t_philo *p = data->first_philo;
-	if ((int)(get_current_time() - p->last_meal) > data->time_to_die)
+	if ((int)(get_current_time() - p->last_meal) >= data->time_to_die)
 		return (p);
 	if (p->right_philo)
 		p = p->right_philo;
 	while (p != data->first_philo)
 	{
-		if ((int)(get_current_time() - p->last_meal) > data->time_to_die)
+		if ((int)(get_current_time() - p->last_meal) >= data->time_to_die)
 			return (p);
 		if (p->right_philo)
 			p = p->right_philo;
@@ -88,34 +88,28 @@ t_philo	*check_philo(t_data *data)
 
 void Monitor(t_data *data)
 {
-	// t_data *data = (t_data *)vargp;
-
 	if (create_threads(data))
-		return;
+		return ;
 	while (!check_philo(data) && !check_meals(data))
 	{
-		usleep(100);
+		usleep(500);
 	}
 	if (check_meals(data))
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
-		ft_mutex_write(check_philo(data), "has died of hunger.\n");
-	//pthread_mutex_lock(data->write_lock);
-	free_and_exit(data, NULL);
+		ft_mutex_write(check_philo(data), "has died of hunger.");
+	data->game_over = true;
 }
 
 int main(int argc, char *argv[])
 {
 	t_data		*data;
-	pthread_mutex_t printing;
 
-
-	if (pthread_mutex_init(&printing, NULL) != 0)
-		return (0);
 	data = parse_arguments(argc, argv);
-	data->write_lock = &printing;
 	data = initialize_table(data);
 
 	Monitor(data);
-	//display_table(data);
+
+	display_table(data);
+	free_and_exit(data, NULL);
 }

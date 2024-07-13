@@ -39,7 +39,7 @@ t_data	*initialize_table(t_data *data)
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
-	data->first_philo->l_fork = philo_tmp->r_fork;
+	data->first_philo->l_fork = &philo_tmp->r_fork;
 	philo_tmp->right_philo = data->first_philo;
 	data->first_philo->left_philo = philo_tmp;
 	return (data);
@@ -56,24 +56,16 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 		free_and_exit(data, "Error\n allocation failed");
 	philo->id = id;
 	if (pthread_mutex_init(&philo->r_fork, NULL))
-		free_and_exit(data, "Error\n allocation failed");
-	// philo->r_fork = &r_fork;
+		free_and_exit(data, "Error\n fork allocation failed");
 	if (left_philo)
 	{
-		philo->l_fork = left_philo->r_fork;
+		philo->l_fork = &left_philo->r_fork;
 		philo->left_philo = left_philo;
 	}
-	else
-	{
-		philo->l_fork = NULL;
-		philo->left_philo = NULL;
-	}
-	philo->time_to_die = data->time_to_die;
-	philo->time_to_eat = data->time_to_eat;
-	philo->time_to_sleep = data->time_to_sleep;
 	philo->birthday =  data->timestamp;
+	// adesso che abbiamo data birthday non serve ma non ho voglia di riscrivere i metodi del write
 	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
-	philo->write_lock = data->write_lock;
+	philo->data = data;
 	return (philo);
 }

@@ -27,7 +27,7 @@ static int	get_single_arg(int *taget, char *arg)
 	if (ft_atol(arg) < INT_MIN || ft_atol(arg) > INT_MAX)
 		return (-1);
 	*taget = ft_atoi(arg);
-	if (*taget == 0)
+	if (*taget <= 0)
 		return (-1);
 	return (*taget);
 }
@@ -62,16 +62,21 @@ static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 // Try and check malloc
 // Get the values from argv
 // Assign NULL to first_philo pointer to avoid future conditional jump
+// TO DO spostare l'inizializzazione di DATA in una funzione apparte
 t_data	*parse_arguments(int argc, char *argv[])
 {
-	t_data	*data;
+	t_data			*data;
 
+	data = NULL;
+	if (argc != 5 && argc != 6)
+		free_and_exit(data, "Error\n wrong number of arguments\n");
 	data = malloc(sizeof(t_data));
 	if (!data)
 		free_and_exit(data, "Error\n allocation failed\n");
+	if (pthread_mutex_init(&data->write_lock, NULL) != 0)
+		free_and_exit(data, "Error\n writing lock allocation failed\n");
 	data->first_philo = NULL;
-	if (argc != 5 && argc != 6)
-		free_and_exit(data, "Error\n wrong number of arguments\n");
+	data->game_over = false;
 	data = load_arguments(data, argv, argc);
 	return (data);
 }
