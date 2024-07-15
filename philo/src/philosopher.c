@@ -31,6 +31,6 @@ void philo_eat(t_philo *p)
 	p->last_meal = get_current_time();
 	p->meals_eaten++;
 	ft_usleep(p->data->time_to_eat);
-	pthread_mutex_unlock(&p->r_fork);
 	pthread_mutex_unlock(p->l_fork);
+	pthread_mutex_unlock(&p->r_fork);
 }

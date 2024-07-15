@@ -19,11 +19,15 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
+	pthread_mutex_lock(&philo->data->game_lock);
 	while (!philo->data->game_over)
 	{
+		pthread_mutex_unlock(&philo->data->game_lock);
 		philo_eat(philo);
 		philo_sleep(philo);
+		pthread_mutex_lock(&philo->data->game_lock);
 	}
+	pthread_mutex_unlock(&philo->data->game_lock);
 	return (NULL);
 }
 
@@ -98,7 +102,9 @@ void Monitor(t_data *data)
 		ft_mutex_write(data->first_philo, "each philosopher is satisfied");
 	else
 		ft_mutex_write(check_philo(data), "has died of hunger.");
+	pthread_mutex_lock(&data->game_lock);
 	data->game_over = true;
+	pthread_mutex_unlock(&data->game_lock);
 }
 
 int main(int argc, char *argv[])

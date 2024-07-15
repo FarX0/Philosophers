@@ -10,12 +10,12 @@ SRC = src/main.c \
 INCLUDES = ./includes
 
 # sanitize big no no
-FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
-#FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
+#FLAGS		= -Wall -Werror -Wextra -I includes -pthread -fsanitize=thread -g
+FLAGS		=  -Wall -Werror -Wextra -I includes -pthread -g
 
 OBJS		= $(SRC:%.c=%.o)
 
-ARG = 1 800 200 200 10
+ARG = 2 800 200 200 1
 
 # -s : for valgrind
 $(NAME): $(OBJS)
