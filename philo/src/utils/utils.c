@@ -104,13 +104,14 @@ size_t	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
+//TO DO avevi messo 500 ma ho visto che molti usano 1000 
 int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
+		usleep(1000)
 	return (0);
 }
 
