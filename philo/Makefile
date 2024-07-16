@@ -71,8 +71,9 @@ test: all
 	@echo "$(GREEN)[PHILO]:\t No philosopher should die.$(RESET)"
 	@read ans
 	 ./$(NAME) 2 800 200 200 100
+
 hel: all
-	valgrind --tool=helgrind -s ./$(NAME) $(ARG)
+	valgrind --tool=helgrind --history-level=approx -s ./$(NAME) $(ARG)
 
 val: all
 	 valgrind --leak-check=full --track-origins=yes -s --show-leak-kinds=all ./$(NAME) $(ARG)
