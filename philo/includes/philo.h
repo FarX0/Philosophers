@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:01:24 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/08 15:41:17 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:49:35 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data
 	t_philo			*first_philo;
 	pthread_mutex_t write_lock;
 	pthread_mutex_t game_lock;
+	pthread_mutex_t p_mutex;
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
@@ -72,6 +73,17 @@ void	ft_mutex_write(t_philo *p, char *str);
 
 void	philo_sleep(t_philo *p);
 
-void philo_eat(t_philo *p);
+void	philo_eat(t_philo *p);
+
+t_bool	get_gameover(t_data *data, t_bool ac);
+
+void	Monitor(t_data *data);
+
+t_philo	*check_philo(t_data *data);
+
+int		check_meals(t_data *data);
+
+int		create_threads(t_data *data);
+
 
 #endif

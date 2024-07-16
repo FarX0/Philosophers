@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 17:55:57 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 15:56:25 by tfalchi          ###   ########.fr       */
+/*   Created: 2024/07/16 11:38:17 by tfalchi           #+#    #+#             */
+/*   Updated: 2024/07/16 11:39:08 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
 
-# include "philo.h"
-
-typedef enum e_bool
+int	ft_isdigit(int c)
 {
-	false,
-	true
-}	t_bool;
+	if ('0' <= c && c <= '9')
+		return (1);
+	return (0);
+}
 
-int		ft_atoi(const char *str);
+t_bool	ft_is_string_numeric(const char *str)
+{
+	int	i;
 
-long	ft_atol(const char *s);
-
-t_bool	ft_is_string_numeric(const char *str);
-
-int		ft_isdigit(int c);
-
-int		ft_usleep(size_t milliseconds);
-
-size_t	get_current_time(void);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+		{
+			if (i == 0)
+			{
+				if (str[i] != '-' && str[i] != '+')
+					return (false);
+			}
+			else
+				return (false);
+		}
+		i++;
+	}
+	return (true);
+}

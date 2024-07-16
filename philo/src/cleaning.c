@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:05:37 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/08 12:57:22 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:51:54 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	free_and_exit(t_data *data, char *error)
 	if (data->first_philo)
 		free_philos(data);
 	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->p_mutex);
+	//pthread_mutex_destroy(&data->game_lock);
 	// free(data->write_lock);
 	if (data)
 		free(data);
