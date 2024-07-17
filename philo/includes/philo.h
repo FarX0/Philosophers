@@ -6,7 +6,7 @@
 /*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:01:24 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 12:49:35 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:39:25 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # include "utils.h"
 
 // Is managed as a "chain" connecting first and last "nodes"
+// list is slow ASFUCK
 typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
+	int				to_eat;
 	size_t			last_meal;
 	size_t			birthday;
 
@@ -50,6 +52,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals_count;
+	int				nb_fed;
 
 	t_bool			game_over;
 	size_t			timestamp;
@@ -57,6 +60,8 @@ typedef struct s_data
 	pthread_mutex_t write_lock;
 	pthread_mutex_t game_lock;
 	pthread_mutex_t p_mutex;
+	pthread_mutex_t fed;
+	pthread_t		undertaker;
 }	t_data;
 
 t_data	*parse_arguments(int argc, char *argv[]);
@@ -85,5 +90,8 @@ int		check_meals(t_data *data);
 
 int		create_threads(t_data *data);
 
+t_bool	check_food(t_data *data, int id, int add);
+
+void	*check_life(void *da);
 
 #endif

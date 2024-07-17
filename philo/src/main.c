@@ -6,7 +6,7 @@
 /*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:45:02 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 15:16:52 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:47:29 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*philo_routine(void *args)
 	philo = (t_philo *)args;
 	if (philo->id % 2)
 		philo_sleep(philo);
+	printf("%d has to eat %d times\n", philo->id, philo->to_eat);
 	while (!get_gameover(philo->data, false))
 	{
 		philo_eat(philo);
@@ -32,11 +33,9 @@ int create_threads(t_data *data)
 {
 	t_philo *p;
 	
-	pthread_mutex_lock(&data->p_mutex);
 	p = data->first_philo;
 	if (create_philo_routine(p))
 	{
-		pthread_mutex_unlock(&data->p_mutex);
 		return (1);
 	}
 	p = p->right_philo;
@@ -44,12 +43,10 @@ int create_threads(t_data *data)
 	{
 		if (create_philo_routine(p))
 		{
-			pthread_mutex_unlock(&data->p_mutex);
 			return (1);
 		}
 		p = p->right_philo;
 	}
-	pthread_mutex_unlock(&data->p_mutex);
 	return (0);
 }
 

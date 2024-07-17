@@ -6,7 +6,7 @@
 /*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:05:01 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 12:50:50 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/07/17 18:33:47 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static t_data	*load_arguments(t_data *data, char *argv[], int argc)
 	}
 	else
 		data->meals_count = -1;
+	data->nb_fed = 0;
 	data->timestamp = get_current_time();
 	return (data);
 }
@@ -75,7 +76,8 @@ t_data	*parse_arguments(int argc, char *argv[])
 		free_and_exit(data, "Error\n allocation failed\n");
 	if (pthread_mutex_init(&data->write_lock, NULL) != 0
 		|| pthread_mutex_init(&data->game_lock, NULL) != 0
-		|| pthread_mutex_init(&data->p_mutex, NULL) != 0)
+		|| pthread_mutex_init(&data->p_mutex, NULL) != 0
+		|| pthread_mutex_init(&data->fed, NULL) != 0)
 		free_and_exit(data, "Error\n writing lock allocation failed\n");
 	data->first_philo = NULL;
 	data->game_over = false;

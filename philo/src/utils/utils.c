@@ -6,7 +6,7 @@
 /*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:55:14 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/16 15:36:41 by tfalchi          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:53:30 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_usleep(size_t milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
-		usleep(1000)
+		usleep(100);
 	return (0);
 }
 

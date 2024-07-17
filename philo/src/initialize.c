@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initailize.c                                       :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:53:56 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/08 12:57:22 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:36:29 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ static t_philo	*new_philo(t_data *data, int id, t_philo *left_philo)
 	philo->last_meal = get_current_time();
 	philo->meals_eaten = 0;
 	philo->data = data;
+	philo->to_eat = data->meals_count;
 	return (philo);
 }
