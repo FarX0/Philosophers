@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebartol <lebartol@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: tfalchi <tfalchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:55:14 by lebartol          #+#    #+#             */
-/*   Updated: 2024/07/08 15:42:28 by lebartol         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:36:41 by tfalchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,75 +25,7 @@ void ft_mutex_write(t_philo *p, char *str)
 	pthread_mutex_unlock(&p->data->write_lock);
 }
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	res;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	sign = 1;
-	if (str[i] == '+' || str[i] == '-')
-		if (str[i++] == '-')
-			sign = -1;
-	res = 0;
-	while (ft_isdigit(str[i]))
-		res = res * 10 + (str[i++] - '0');
-	return (res * sign);
-}
-
-long	ft_atol(const char *s)
-{
-	long	res;
-	int		sign;
-
-	res = 0;
-	sign = 1;
-	while (*s == ' ' || (*s > 8 && *s < 14))
-		s++;
-	if (*s == '-')
-		sign = -1;
-	if (*s == '-' || *s == '+')
-		s++;
-	while (ft_isdigit(*s))
-		res = res * 10 + *s++ - '0';
-	return (res * sign);
-}
-
-int	ft_isdigit(int c)
-{
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
-}
-
-t_bool	ft_is_string_numeric(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]) == 0)
-		{
-			if (i == 0)
-			{
-				if (str[i] != '-' && str[i] != '+')
-					return (false);
-			}
-			else
-				return (false);
-		}
-		i++;
-	}
-	return (true);
-}
-
-// TO DO in caso di errore nel gettimeofday non sarebbe meglio uscire direttamente con la funzione
+// TODO in caso di errore nel gettimeofday non sarebbe meglio uscire direttamente con la funzione
 // free_adn_exit()? so che non succede mai ma se dovesse succedere si sfanculerebbe tutto??
 size_t	get_current_time(void)
 {
@@ -137,4 +69,16 @@ void	display_table(t_data *data)
 		philo_tmp = philo_tmp->right_philo;
 		i++;
 	}
+}
+
+t_bool	get_gameover(t_data *data, t_bool action)
+{
+	t_bool ret;
+
+	pthread_mutex_lock(&data->game_lock);
+	if (action == true)
+		data->game_over = true;
+	ret = data->game_over;
+	pthread_mutex_unlock(&data->game_lock);
+	return (ret);
 }
